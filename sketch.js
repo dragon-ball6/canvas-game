@@ -1,0 +1,7 @@
+let setup = () => {
+
+}
+
+let draw = () => {
+
+}
