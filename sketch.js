@@ -1,4 +1,4 @@
-let setup = () => {
+function setup() {
   createCanvas(500, 500);
 };
 
@@ -30,17 +30,17 @@ class Player {
 
 let you = new Player();
 
-let draw = () => {
+function draw() {
   background(255);
   you.display();
   you.update();
-};
+}
 
-let keyPressed = () => {
+function keyPressed() {
   keyP[String(key).toLowerCase()] = true;
   return false;
-};
-let keyReleased = () => {
+}
+function keyReleased() {
   delete keyP[String(key).toLowerCase()];
   return false;
-};
+}
