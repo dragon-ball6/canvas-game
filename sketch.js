@@ -128,7 +128,7 @@ function draw() {
     you.display();
     you.update();
     for (let i of objs) {
-      objs.display();
+      i.display();
     }
   } catch (e) {
     console.error(`The DEVELOPER made a mistake!!! ${e.message} at ${e.line}`);
