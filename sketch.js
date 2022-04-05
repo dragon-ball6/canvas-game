@@ -114,10 +114,11 @@ class Gem extends Source {
 }
 
 let you = new Player();
+let cam = {x: you.x, y: you.y};
 
 // resource sources (see 'class Source' or above)
 let objs = [];
-for (var i = 0; i < world/50; i++) {
+for (var i = 0; i <= world/50; i++) {
   objs.push(random([Tree, Boulder, Rock, Pebble, Gold, Iore]));
 }
 
@@ -127,9 +128,14 @@ function draw() {
     background(255);
     you.display();
     you.update();
+
+    pushMatrix();
+    translate(cam.x, cam.y);
     for (let i of objs) {
       i.display();
     }
+    popMatrix();
+    cam = {x: you.x, y: you.y};
   } catch (e) {
     console.error(`The DEVELOPER made a mistake!!! ${e.message} at ${e.line}`);
     console.info("If you are not the DEVELOPER, create an issue here: https://github.com/dragon-ball6/canvas-game/issues")
