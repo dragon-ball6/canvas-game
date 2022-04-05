@@ -124,7 +124,7 @@ for (var i = 0; i <= world/50; i++) {
 
 let logged = false;
 
-function draw() 
+function draw() {}
   // try-catch: MY PRECIOUS
   try {
     background(255);
@@ -141,7 +141,6 @@ function draw()
   } catch (e) {
     let err = `The DEVELOPER made a mistake!!! ${e.message}`;
     if (logged !== err) console.error(err); logged = err;
-    print(logged);
   }
 }
 
