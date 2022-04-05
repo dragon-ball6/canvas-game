@@ -1,5 +1,6 @@
 function setup() {
-  createCanvas(500, 500);
+  // to maximise the screen
+  createCanvas(screen.availWidth, screen.availHeight);
 };
 
 // key pressed
@@ -119,6 +120,7 @@ let cam = {x: you.x, y: you.y};
 // resource sources (see 'class Source' or above)
 let objs = [];
 for (var i = 0; i <= world/50; i++) {
+  // FIXME: This does not work!
   objs.push(random([Tree, Boulder, Rock, Pebble, Gold, Iore]));
 }
 
