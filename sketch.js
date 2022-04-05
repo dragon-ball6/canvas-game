@@ -28,7 +28,7 @@ class Player {
     this.spd = 5;
   }
   display() {
-    fill("#FFDBAC"));
+    fill("#FFDBAC");
     ellipse(width/2, height/2, this.size, this.size);
   }
   update() {
