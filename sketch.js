@@ -122,6 +122,8 @@ for (var i = 0; i <= world/50; i++) {
   objs.push(random([Tree, Boulder, Rock, Pebble, Gold, Iore]));
 }
 
+let logged = false;
+
 function draw() {
   // try-catch: MY PRECIOUS
   try {
@@ -129,16 +131,16 @@ function draw() {
     you.display();
     you.update();
 
-    pushMatrix();
+    push();
     translate(cam.x, cam.y);
     for (let i of objs) {
       i.display();
     }
-    popMatrix();
+    pop();
     cam = {x: you.x, y: you.y};
   } catch (e) {
-    console.error(`The DEVELOPER made a mistake!!! ${e.message} at ${e.line}`);
-    console.info("If you are not the DEVELOPER, create an issue here: https://github.com/dragon-ball6/canvas-game/issues")
+    let err = `The DEVELOPER made a mistake!!! ${e.message} at ${e.line}`;
+    if (logged !== err) console.error(err); logged = err;
   }
 }
 
