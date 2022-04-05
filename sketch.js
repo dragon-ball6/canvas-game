@@ -124,7 +124,7 @@ for (var i = 0; i <= world/50; i++) {
 
 let logged = false;
 
-function draw() {}
+function draw() {
   // try-catch: MY PRECIOUS
   try {
     background(255);
