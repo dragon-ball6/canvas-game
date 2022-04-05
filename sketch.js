@@ -32,10 +32,10 @@ class Player {
     ellipse(width/2, height/2, this.size, this.size);
   }
   update() {
-    if (keyP.a) this.x = constrain(this.x - this.spd, this.size/2, this.world-this.size/2);
-    if (keyP.d) this.x = constrain(this.x + this.spd, this.size/2, this.world-this.size/2);
-    if (keyP.w) this.y = constrain(this.y - this.spd, this.size/2, this.world-this.size/2);
-    if (keyP.s) this.y = constrain(this.y + this.spd, this.size/2, this.world-this.size/2);
+    if (keyP.a) {this.x = constrain(this.x - this.spd, this.size/2, this.world-this.size/2);}
+    if (keyP.d) {this.x = constrain(this.x + this.spd, this.size/2, this.world-this.size/2);}
+    if (keyP.w) {this.y = constrain(this.y - this.spd, this.size/2, this.world-this.size/2);}
+    if (keyP.s) {this.y = constrain(this.y + this.spd, this.size/2, this.world-this.size/2);}
   }
 }
 
