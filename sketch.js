@@ -28,7 +28,7 @@ class Player {
     this.spd = 5;
   }
   display() {
-    fill(unhex("FFDBAC"));
+    fill("#FFDBAC"));
     ellipse(width/2, height/2, this.size, this.size);
   }
   update() {
@@ -40,12 +40,17 @@ class Player {
 }
 
 // more sugar
-class Generator {
-  constructor(x, y, type, health) {
+class Source {
+  constructor(x, y, type, health, colour) {
     this.x = x;
     this.y = y;
     this.type = type;
     this.health = health;
+    this.colour = colour;
+  }
+  display() {
+    fill(colour);
+    ellipse(this.x, this.y, this.health*5, this.health*5);
   }
   mine() {
     this.health--;
@@ -58,6 +63,11 @@ class Generator {
       break;
       case "iron":
         resources[this.type.toLowerCase()] += 6;
+      break;
+      case "gold":
+        // NOTE: make it downgrade your tool when destroyed
+        resources[this.type.toLowerCase()] += 14;
+      break;
       default:
         // ouch fists
         resources[this.type.toLowerCase()] += 0.5;
@@ -67,37 +77,37 @@ class Generator {
 
 
 // even more sugar, with added inheritance =]
-class Tree extends Generator {
+class Tree extends Source {
   constructor(x, y) {
     super(x, y, "Wood", 3);
   }
 }
-class Boulder extends Generator {
+class Boulder extends Source {
   constructor(x, y) {
     super(x, y, "Stone", 25);
   }
 }
-class Rock extends Generator {
+class Rock extends Source {
   constructor(x, y) {
     super(x, y, "Stone", 10);
   }
 }
-class Pebble extends Generator {
+class Pebble extends Source {
   constructor(x, y) {
     super(x, y, "Stone", 3);
   }
 }
-class Gold extends Generator {
+class Gold extends Source {
   constructor(x, y) {
     super(x, y, "Gold", 15);
   }
 }
-class Iore extends Generator {
+class Iore extends Source {
   constructor(x, y) {
     super(x, y, "Iron", 20)
   }
 }
-class Gem extends Generator {
+class Gem extends Source {
   constructor(x, y) {
     super(x, y, "Gem", 30);
   }
@@ -105,12 +115,21 @@ class Gem extends Generator {
 
 let you = new Player();
 
+// resource sources (see 'class Source' or above)
+let objs = [];
+for (var i = 0; i < world/50; i++) {
+  objs.push(random([Tree, Boulder, Rock, Pebble, Gold, Iore]));
+}
+
 function draw() {
   // try-catch: MY PRECIOUS
   try {
     background(255);
     you.display();
     you.update();
+    for (let i of objs) {
+      objs.display();
+    }
   } catch (e) {
     console.error(`The DEVELOPER made a mistake!!! ${e.message} at ${e.line}`);
     console.info("If you are not the DEVELOPER, create an issue here: https://github.com/dragon-ball6/canvas-game/issues")
