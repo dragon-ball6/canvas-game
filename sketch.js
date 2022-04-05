@@ -139,8 +139,9 @@ function draw() {
     pop();
     cam = {x: you.x, y: you.y};
   } catch (e) {
-    let err = `The DEVELOPER made a mistake!!! ${e.message} at ${e.line}`;
+    let err = `The DEVELOPER made a mistake!!! ${e.message}`;
     if (logged !== err) console.error(err); logged = err;
+    println(logged);
   }
 }
 
