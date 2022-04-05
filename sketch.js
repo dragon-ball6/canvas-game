@@ -11,10 +11,13 @@ let resources = {
   wood: 0,
   stone: 0,
   gold: 0,
-  gems: 0,
+  iron: 0,
+  gem: 0,
   fur: 0,
-  meat: 0
+  food: 0
 };
+
+let level;
 
 // some sugar to remove our attention from the prevailing truth =]
 class Player {
@@ -36,6 +39,7 @@ class Player {
   }
 }
 
+// more sugar
 class Generator {
   constructor(x, y, type, health) {
     this.x = x;
@@ -44,8 +48,58 @@ class Generator {
     this.health = health;
   }
   mine() {
-    this.health -= 10;
-    resources[this.type] += 1;
+    this.health--;
+    switch (level) {
+      case "wood":
+        resources[this.type.toLowerCase()]++;
+      break;
+      case "stone":
+        resources[this.type.toLowerCase()] += 3;
+      break;
+      case "iron":
+        resources[this.type.toLowerCase()] += 6;
+      default:
+        // ouch fists
+        resources[this.type.toLowerCase()] += 0.5;
+    }
+  }
+}
+
+
+// even more sugar, with added inheritance =]
+class Tree extends Generator {
+  constructor(x, y) {
+    super(x, y, "Wood", 3);
+  }
+}
+class Boulder extends Generator {
+  constructor(x, y) {
+    super(x, y, "Stone", 25);
+  }
+}
+class Rock extends Generator {
+  constructor(x, y) {
+    super(x, y, "Stone", 10);
+  }
+}
+class Pebble extends Generator {
+  constructor(x, y) {
+    super(x, y, "Stone", 3);
+  }
+}
+class Gold extends Generator {
+  constructor(x, y) {
+    super(x, y, "Gold", 15);
+  }
+}
+class Iore extends Generator {
+  constructor(x, y) {
+    super(x, y, "Iron", 20)
+  }
+}
+class Gem extends Generator {
+  constructor(x, y) {
+    super(x, y, "Gem", 30);
   }
 }
 
