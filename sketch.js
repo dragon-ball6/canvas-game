@@ -141,7 +141,7 @@ function draw() {
   } catch (e) {
     let err = `The DEVELOPER made a mistake!!! ${e.message}`;
     if (logged !== err) console.error(err); logged = err;
-    println(logged);
+    print(logged);
   }
 }
 
