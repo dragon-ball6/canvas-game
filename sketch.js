@@ -11,9 +11,23 @@ function setup() {
 
 // adapted from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 function rand(arr) {
-  min = Math.ceil(0);
-  max = Math.floor(arr.length-1);
-  return arr[Math.floor(Math.random() * (max - min + 1) + min)];
+  if (typeof arr === Array) {
+    min = Math.ceil(0);
+    max = Math.floor(arr.length-1);
+    return arr[Math.floor(Math.random() * (max - min + 1) + min)];
+  } else {
+    if (arguments.length === 1) {
+      min = Math.ceil(0);
+      max = Math.floor(arr);
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    } else if (arguments.length === 2) {
+      min = Math.ceil(arguments[0]);
+      max = Math.floor(arguments[2]);
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    } else {
+      throw 'Wrong number of arguments!';
+    }
+  }
 }
 
 // key pressed
@@ -135,7 +149,7 @@ let cam = {x: you.x, y: you.y};
 // resource sources (see 'class Source' or above)
 let objs = [];
 for (var i = 0; i <= (world.x, world.y)/50; i++) {
-  objs.push(new rand([Tree, Boulder, Rock, Pebble, Gold, Iore, Gem])(random(world.x), random(world.y)));
+  objs.push(new rand([Tree, Boulder, Rock, Pebble, Gold, Iore, Gem])(rand(world.x), rand(world.y)));
 }
 
 
