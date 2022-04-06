@@ -1,3 +1,5 @@
+// try-catch: MY PRECIOUS
+try {
 function setup() {
   // to maximise the screen
   createCanvas(window.innerWidth, window.innerHeight);
@@ -131,23 +133,17 @@ for (var i = 0; i <= (world.x, world.y)/50; i++) {
 let logged = false;
 
 function draw() {
-  // try-catch: MY PRECIOUS
-  try {
-    background(255);
-    you.display();
-    you.update();
+  background(255);
+  you.display();
+  you.update();
 
-    push();
-    translate(cam.x, cam.y);
-    for (let i = objs.length; i--;) {
-      objs[i].display();
-    }
-    pop();
-    cam = {x: you.x, y: you.y};
-  } catch (e) {
-    let err = `The DEVELOPER made a mistake!!! ${e.message}`;
-    if (logged !== err) console.error(err); logged = err;
+  push();
+  translate(cam.x, cam.y);
+  for (let i = objs.length; i--;) {
+    objs[i].display();
   }
+  pop();
+  cam = {x: you.x, y: you.y};
 }
 
 function keyPressed() {
@@ -157,4 +153,8 @@ function keyPressed() {
 function keyReleased() {
   delete keyP[String(key).toLowerCase()];
   return false;
+}
+} catch (e) {
+  let err = `The DEVELOPER made a mistake!!! ${e.message}`;
+  if (logged !== err) console.error(err); logged = err;
 }
