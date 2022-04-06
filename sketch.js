@@ -1,6 +1,9 @@
 function setup() {
   // to maximise the screen
-  createCanvas(screen.availWidth, screen.availHeight);
+  createCanvas(window.innerWidth, window.innerHeight);
+
+  // there should be stroke
+  stroke(0);
 };
 
 // key pressed
@@ -46,6 +49,8 @@ class Source {
     this.x = x;
     this.y = y;
     this.type = type;
+
+    // how much hits needed to break
     this.health = health;
     this.colour = colour;
   }
@@ -80,37 +85,37 @@ class Source {
 // even more sugar, with added inheritance =]
 class Tree extends Source {
   constructor(x, y) {
-    super(x, y, "Wood", 3);
+    super(x, y, "Wood", 3, "#682c2c");
   }
 }
 class Boulder extends Source {
   constructor(x, y) {
-    super(x, y, "Stone", 25);
+    super(x, y, "Stone", 25, "#c2c2c2");
   }
 }
 class Rock extends Source {
   constructor(x, y) {
-    super(x, y, "Stone", 10);
+    super(x, y, "Stone", 10, "#c2c2c2");
   }
 }
 class Pebble extends Source {
   constructor(x, y) {
-    super(x, y, "Stone", 3);
+    super(x, y, "Stone", 3, "#c2c2c2");
   }
 }
 class Gold extends Source {
   constructor(x, y) {
-    super(x, y, "Gold", 15);
+    super(x, y, "Gold", 15, "ffdd00");
   }
 }
 class Iore extends Source {
   constructor(x, y) {
-    super(x, y, "Iron", 20)
+    super(x, y, "Iron", 20, "#d4d4d4")
   }
 }
 class Gem extends Source {
   constructor(x, y) {
-    super(x, y, "Gem", 30);
+    super(x, y, "Gem", 30, "#00fbff");
   }
 }
 
@@ -119,9 +124,8 @@ let cam = {x: you.x, y: you.y};
 
 // resource sources (see 'class Source' or above)
 let objs = [];
-for (var i = 0; i <= world/50; i++) {
-  // FIXME: This does not work!
-  objs.push(random([Tree, Boulder, Rock, Pebble, Gold, Iore]));
+for (var i = 0; i <= (world.x, world.y)/50; i++) {
+  objs.push(new random([Tree, Boulder, Rock, Pebble, Gold, Iore, Gem])(random(world.x), random(world.y)));
 }
 
 let logged = false;
@@ -135,8 +139,8 @@ function draw() {
 
     push();
     translate(cam.x, cam.y);
-    for (let i of objs) {
-      i.display();
+    for (let i = objs.length; i--;) {
+      objs[i].display();
     }
     pop();
     cam = {x: you.x, y: you.y};
