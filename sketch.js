@@ -1,4 +1,5 @@
 // try-catch: MY PRECIOUS
+let logged;
 try {
 function setup() {
   // to maximise the screen
@@ -130,7 +131,6 @@ for (var i = 0; i <= (world.x, world.y)/50; i++) {
   objs.push(new random([Tree, Boulder, Rock, Pebble, Gold, Iore, Gem])(random(world.x), random(world.y)));
 }
 
-let logged = false;
 
 function draw() {
   background(255);
