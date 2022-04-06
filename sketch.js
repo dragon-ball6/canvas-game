@@ -150,6 +150,7 @@ let cam = {x: you.x, y: you.y};
 let objs = [];
 for (var i = 0; i <= (world.x, world.y)/50; i++) {
   objs.push(new rand([Tree, Boulder, Rock, Pebble, Gold, Iore, Gem])(rand(world.x), rand(world.y)));
+  console.log(objs[objs.length-1]);
 }
 
 
