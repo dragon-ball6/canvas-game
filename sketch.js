@@ -9,6 +9,13 @@ function setup() {
   stroke(0);
 };
 
+// adapted from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+function rand(arr) {
+  min = Math.ceil(0);
+  max = Math.floor(arr.length-1);
+  return arr[Math.floor(Math.random() * (max - min + 1) + min)];
+}
+
 // key pressed
 let keyP = {};
 
@@ -128,7 +135,7 @@ let cam = {x: you.x, y: you.y};
 // resource sources (see 'class Source' or above)
 let objs = [];
 for (var i = 0; i <= (world.x, world.y)/50; i++) {
-  objs.push(new random([Tree, Boulder, Rock, Pebble, Gold, Iore, Gem])(random(world.x), random(world.y)));
+  objs.push(new rand([Tree, Boulder, Rock, Pebble, Gold, Iore, Gem])(random(world.x), random(world.y)));
 }
 
 
